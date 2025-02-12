@@ -1,0 +1,363 @@
+/* =========================
+   CSS Variables for Professional Palette
+   ========================= */
+:root {
+  --primary-color: #005f73;       /* Deep teal for headers, borders, and accents */
+  --secondary-color: #0a9396;     /* A lighter teal for hover states and highlights */
+  --accent-color: #94d2bd;        /* Soft accent for subtle emphasis */
+  --background-color: #ffffff;    /* Clean white background */
+  --light-bg: #f7f7f7;            /* Light grey background for sections */
+  --text-color: #333333;          /* Standard text color */
+  --heading-border: #005f73;      /* Underline for headings */
+  --link-hover: #0a9396;          /* Link hover state */
+}
+
+/* =========================
+   Global Reset & Base Styles
+   ========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+/* Container Utility */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* =========================
+   Header & Navigation
+   ========================= */
+header {
+  background-color: var(--light-bg);
+  padding: 20px;
+  border-bottom: 2px solid var(--primary-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header .logo {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: var(--link-hover);
+}
+
+/* =========================
+   Hero Section
+   ========================= */
+#hero {
+  background: url('hero-bg.jpg') no-repeat center center/cover;
+  color: #ffffff;
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
+}
+
+#hero::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.35);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#hero h1,
+#hero p,
+#hero a {
+  position: relative;
+  z-index: 1;
+}
+
+#hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+#hero p {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+}
+
+/* =========================
+   About Section
+   ========================= */
+#about {
+  padding: 60px 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  text-align: left;
+}
+
+#about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--heading-border);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+#about p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   Services Section
+   ========================= */
+#services {
+  padding: 60px 0;
+  background-color: var(--light-bg);
+  text-align: center;
+}
+
+#services h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--heading-border);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.service-item {
+  display: inline-block;
+  width: 280px;
+  margin: 20px;
+  vertical-align: top;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--background-color);
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.service-item h3 {
+  font-size: 1.35rem;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+/* =========================
+   Portfolio Section
+   ========================= */
+#portfolio {
+  padding: 60px 0;
+  background-color: var(--background-color);
+  text-align: center;
+}
+
+#portfolio h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--heading-border);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.project-card {
+  display: inline-block;
+  width: 300px;
+  margin: 20px;
+  vertical-align: top;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--background-color);
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+}
+
+.project-card h3 {
+  font-size: 1.35rem;
+  margin: 15px;
+  color: var(--primary-color);
+}
+
+.project-card p {
+  font-size: 1rem;
+  margin: 15px;
+}
+
+/* =========================
+   Testimonials Section
+   ========================= */
+#testimonials {
+  padding: 60px 0;
+  background-color: var(--light-bg);
+  text-align: center;
+}
+
+#testimonials h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--heading-border);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+#testimonials blockquote {
+  font-size: 1.1rem;
+  font-style: italic;
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 20px 30px;
+  background-color: var(--background-color);
+  border-left: 5px solid var(--primary-color);
+}
+
+#testimonials blockquote cite {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+/* =========================
+   Contact Section
+   ========================= */
+#contact {
+  padding: 60px 0;
+  background-color: var(--background-color);
+  text-align: center;
+}
+
+#contact h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--heading-border);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+#contact form {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#contact form input,
+#contact form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1.1rem;
+}
+
+#contact form button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#contact form button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* =========================
+   Footer
+   ========================= */
+footer {
+  background-color: #333333;
+  color: #ffffff;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+footer p {
+  font-size: 0.95rem;
+}
+
+footer .social-links a {
+  color: #ffffff;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer .social-links a:hover {
+  color: var(--accent-color);
+}
+
+/* =========================
+   Responsive Adjustments
+   ========================= */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  #hero p {
+    font-size: 1.2rem;
+  }
+  
+  .service-item,
+  .project-card {
+    width: 80%;
+    margin: 20px auto;
+    display: block;
+  }
+}
