@@ -79,13 +79,29 @@ header .logo {
   color: var(--primary-color);
 }
 
+/* Default (wider screens): Tiled layout using grid */
 nav ul {
   list-style: none;
-  display: flex;
-  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  align-items: center;
+  justify-items: center;
 }
 
+/* Tile styling for each navigation item on wider screens */
+nav ul li {
+  background-color: var(--background-color);
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+  width: 100%;
+}
+
+/* Nav link styling */
 nav ul li a {
   text-decoration: none;
   color: var(--text-color);
@@ -97,6 +113,23 @@ nav ul li a:hover {
   color: var(--link-hover);
 }
 
+/* On small screens: switch to horizontal flex layout */
+@media (max-width: 600px) {
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0;
+  }
+  
+  /* Remove tile styling on smaller screens */
+  nav ul li {
+    background: none;
+    border: none;
+    padding: 0;
+    width: auto;
+  }
+}
 /* =========================
    Hero Section
    ========================= */
