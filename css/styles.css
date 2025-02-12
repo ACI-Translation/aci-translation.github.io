@@ -28,29 +28,19 @@ body {
   line-height: 1.6;
   color: var(--text-color);
   background-color: var(--background-color);
-}
-
-/* Set a background for the whole page */
-body {
   background: #f0f0f0;  /* A subtle light gray background */
   margin: 0;
   padding: 0;
-  /* Optionally, use a background image or gradient:
-  background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
-  background-image: url('pattern.png');
-  background-size: cover;
-  background-attachment: fixed;
-  */
 }
 
 /* Wrapper for the main site content */
 .wrapper {
-  max-width: 1200px;     /* Limits the content width */
-  margin: 0 auto;        /* Centers the container horizontally */
-  background-color: #fff;/* White background for a clean look */
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);  /* A subtle shadow for depth */
-  overflow: hidden;      /* Ensures inner elements don't bleed outside */
-  padding: 20px;         /* Optional padding to separate content from edges */
+  max-width: 1200px;     
+  margin: 0 auto;        
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
 }
 
 /* Container Utility */
@@ -102,60 +92,66 @@ nav ul li a:hover {
    ========================= */
 #hero {
   position: relative;
-  overflow: hidden; /* Ensures child elements are contained */
+  overflow: hidden;
   background: url('hero-bg.jpg') no-repeat center center/cover;
-  background-attachment: fixed; /* Basic parallax effect */
+  background-attachment: fixed;
   color: #ffffff;
   padding: 100px 0;
   font-size: 1.5rem;
   text-align: center;
 }
 
-/* Fade-In Base */
+#hero::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.35);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#hero h1,
+#hero p,
+#hero a {
+  position: relative;
+  z-index: 1;
+}
+
+#hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+#hero p {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+}
+
+/* Fade-In Animation for Scroll Effects */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 1s ease-out, transform 1s ease-out;
+  transition: opacity 2s ease-out, transform 2s ease-out;
 }
 
-/* When element becomes visible */
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* =========================
-   Service Cards with Hover Effects
+   Common Section Header
    ========================= */
-#services .services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 40px;
+.section-header {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--heading-border);
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
-#services .service {
-  background-color: var(--background-color);
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  text-align: center;
-  padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#services .service:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-#services .service img {
-  width: 100%;
-  height: auto;
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 15px;
-}
-
-/* (Keep your existing CSS for other sections as-is) */
 /* =========================
    About Section
    ========================= */
@@ -163,12 +159,14 @@ nav ul li a:hover {
   padding: 60px 0;
   background-color: var(--background-color);
   color: var(--text-color);
-  text-align: left;
+  text-align: center;
 }
 
 #about h2 {
+  /* Replace with common class in HTML: class="section-header" */
+  /* Alternatively, you can override directly here: */
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   color: var(--primary-color);
   border-bottom: 3px solid var(--heading-border);
   display: inline-block;
@@ -180,15 +178,32 @@ nav ul li a:hover {
   margin-bottom: 20px;
 }
 
-/* Services Section Grid Container */
-#services .services-grid {
+/* =========================
+   Services Section
+   ========================= */
+#services {
+  padding: 60px 0;
+  background-color: var(--light-bg);
+  text-align: center;
+}
+
+#services h2 {
+  /* Use .section-header for consistency */
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--heading-border);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   margin-top: 40px;
 }
 
-/* Service Card Styling */
 #services .service {
   background-color: var(--background-color);
   border: 1px solid #ddd;
@@ -199,18 +214,16 @@ nav ul li a:hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Service Image */
+#services .service:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 #services .service img {
   width: 100%;
   height: auto;
   border-bottom: 1px solid #ddd;
   margin-bottom: 15px;
-}
-
-/* Hover Effect for Tactile Feedback */
-#services .service:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* =========================
@@ -223,6 +236,7 @@ nav ul li a:hover {
 }
 
 #portfolio h2 {
+  /* Use .section-header for consistency */
   font-size: 2.5rem;
   margin-bottom: 40px;
   color: var(--primary-color);
@@ -274,6 +288,7 @@ nav ul li a:hover {
 }
 
 #testimonials h2 {
+  /* Use .section-header for consistency */
   font-size: 2.5rem;
   margin-bottom: 40px;
   color: var(--primary-color);
@@ -309,6 +324,7 @@ nav ul li a:hover {
 }
 
 #contact h2 {
+  /* Use .section-header for consistency */
   font-size: 2.5rem;
   margin-bottom: 40px;
   color: var(--primary-color);
@@ -374,6 +390,27 @@ footer .social-links a:hover {
 }
 
 /* =========================
+   Button Styling for "Get in Touch"
+   ========================= */
+.cta-button {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  text-decoration: none;
+  border-radius: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
    Responsive Adjustments
    ========================= */
 @media (max-width: 768px) {
@@ -396,22 +433,4 @@ footer .social-links a:hover {
     margin: 20px auto;
     display: block;
   }
-}
-
-.cta-button {
-  display: inline-block;
-  padding: 12px 30px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #fff;
-  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-  text-decoration: none;
-  border-radius: 30px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.cta-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
