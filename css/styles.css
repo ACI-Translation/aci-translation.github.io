@@ -98,43 +98,64 @@ nav ul li a:hover {
 }
 
 /* =========================
-   Hero Section
+   Hero Section with Parallax & Fade-In
    ========================= */
 #hero {
+  position: relative;
+  overflow: hidden; /* Ensures child elements are contained */
   background: url('hero-bg.jpg') no-repeat center center/cover;
+  background-attachment: fixed; /* Basic parallax effect */
   color: #ffffff;
   padding: 100px 0;
-  text-align: center;
-  position: relative;
-}
-
-#hero::after {
-  content: "";
-  background-color: rgba(0, 0, 0, 0.35);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-#hero h1,
-#hero p,
-#hero a {
-  position: relative;
-  z-index: 1;
-}
-
-#hero h1 {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-}
-
-#hero p {
   font-size: 1.5rem;
-  margin-bottom: 40px;
+  text-align: center;
 }
 
+/* Fade-In Base */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* When element becomes visible */
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   Service Cards with Hover Effects
+   ========================= */
+#services .services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+#services .service {
+  background-color: var(--background-color);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#services .service:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#services .service img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 15px;
+}
+
+/* (Keep your existing CSS for other sections as-is) */
 /* =========================
    About Section
    ========================= */
@@ -375,4 +396,22 @@ footer .social-links a:hover {
     margin: 20px auto;
     display: block;
   }
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  text-decoration: none;
+  border-radius: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
