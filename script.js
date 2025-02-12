@@ -1,20 +1,37 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const faders = document.querySelectorAll('.fade-in');
+document.addEventListener("DOMContentLoaded", function() {
+  const panels = document.querySelectorAll('.hero-panel');
+  let currentPanel = 0;
+  const displayTime = 8000; // Total time each panel is displayed (in ms)
   
-  const appearOptions = {
-    threshold: 0.1
-  };
-
-  const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target); // Optional: stop observing once visible
-      }
+  function showPanel(index) {
+    // Remove active class from all panels and reset fade-ins
+    panels.forEach(panel => {
+      panel.classList.remove('active');
+      const fadeEls = panel.querySelectorAll('.fade-in');
+      fadeEls.forEach(el => el.classList.remove('visible'));
     });
-  }, appearOptions);
+    
+    // Activate the current panel
+    const panel = panels[index];
+    panel.classList.add('active');
+    
+    // Get all fade-in elements within this panel and add the visible class one by one
+    const fadeEls = panel.querySelectorAll('.fade-in');
+    fadeEls.forEach((el, i) => {
+      setTimeout(() => {
+        el.classList.add('visible');
+      }, 1000 * (i + 1));
+    });
+  }
   
-  faders.forEach(fader => {
-    appearOnScroll.observe(fader);
-  });
-}); 
+  function nextPanel() {
+    currentPanel = (currentPanel + 1) % panels.length;
+    showPanel(currentPanel);
+  }
+  
+  // Initially show the first panel
+  showPanel(currentPanel);
+  
+  // Cycle through panels every 'displayTime' milliseconds
+  setInterval(nextPanel, displayTime);
+});
