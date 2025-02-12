@@ -30,6 +30,29 @@ body {
   background-color: var(--background-color);
 }
 
+/* Set a background for the whole page */
+body {
+  background: #f0f0f0;  /* A subtle light gray background */
+  margin: 0;
+  padding: 0;
+  /* Optionally, use a background image or gradient:
+  background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+  background-image: url('pattern.png');
+  background-size: cover;
+  background-attachment: fixed;
+  */
+}
+
+/* Wrapper for the main site content */
+.wrapper {
+  max-width: 1200px;     /* Limits the content width */
+  margin: 0 auto;        /* Centers the container horizontally */
+  background-color: #fff;/* White background for a clean look */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);  /* A subtle shadow for depth */
+  overflow: hidden;      /* Ensures inner elements don't bleed outside */
+  padding: 20px;         /* Optional padding to separate content from edges */
+}
+
 /* Container Utility */
 .container {
   width: 90%;
