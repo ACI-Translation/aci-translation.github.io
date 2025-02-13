@@ -88,48 +88,53 @@ nav ul li a:hover {
 }
 
 /* =========================
-   Hero Section with Parallax & Fade-In
+   Hero Section with Fixed Height and Overlapping Panels
    ========================= */
 #hero {
   position: relative;
+  height: 250px;
   overflow: hidden;
-  background: url('hero-bg.jpg') no-repeat center center/cover;
-  background-attachment: fixed;
-  color: #ffffff;
-  padding: 100px 0;
-  font-size: 1.5rem;
   text-align: center;
 }
 
-#hero::after {
-  content: "";
-  background-color: rgba(0, 0, 0, 0.35);
+/* Each hero panel is absolutely positioned to fill the hero section */
+.hero-panel {
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
-}
-
-#hero h1,
-#hero p,
-#hero a {
-  position: relative;
-  z-index: 1;
-}
-
-#hero h1 {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-}
-
-#hero p {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  /* Default background: override per panel using data-index */
+  background-image: url('hero-bg-1.jpg');
+  opacity: 0;
+  transform: translateX(100%); /* Start off-screen to the right */
+  transition: opacity 1s ease, transform 1s ease;
+  padding: 50px 0;
   font-size: 1.5rem;
-  margin-bottom: 40px;
 }
 
-/* General Fade-In for most elements */
+/* Specific background images for each panel */
+.hero-panel[data-index="0"] {
+  background-image: url('hero-bg-1.jpg');
+}
+.hero-panel[data-index="1"] {
+  background-image: url('hero-bg-2.jpg');
+}
+.hero-panel[data-index="2"] {
+  background-image: url('hero-bg-3.jpg');
+}
+
+/* Active panel is visible and positioned in place */
+.hero-panel.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* General Fade-In for inner text elements */
 .fade-in {
+  /* For non-button elements, you might still use the translateY effect */
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 1s ease-out, transform 1s ease-out;
@@ -140,23 +145,36 @@ nav ul li a:hover {
   transform: translateY(0);
 }
 
-/* Override for CTA Button: Only animate opacity, keep scale constant */
-.cta-button.fade-in {
+/* For CTA Button, only fade the inner text */
+.cta-button .cta-text {
   opacity: 0;
-  transform: scale(1); /* Keep at normal scale */
   transition: opacity 1s ease-out;
 }
 
-.cta-button.fade-in.visible {
+.cta-button.fade-in.visible .cta-text {
   opacity: 1;
 }
 
-/* Existing hover effect for CTA button */
+/* CTA Button styling remains unchanged for hover effects */
+.cta-button {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  text-decoration: none;
+  border-radius: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  transform: translateY(20px);
+}
+
 .cta-button:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
-
 
 
 /* =========================
@@ -453,3 +471,90 @@ footer .social-links a:hover {
     display: block;
   }
 }
+/* Slider Wrapper for Testimonials Section - fixed height */
+.slider-wrapper {
+  position: relative;
+  height: 400px; /* Fixed height for the slider area; adjust as needed */
+  background-color: var(--background-color);
+  overflow: hidden;
+}
+
+/* Slider Container */
+.slider-container {
+  position: relative;
+  height: 100%;
+}
+
+/* Each slider content is absolutely positioned and fills the container */
+.slider-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  /* Default state: off-screen right */
+  transform: translateX(100%);
+}
+
+/* Active panel is visible and at the correct position */
+.slider-content.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Logo grid remains as before */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.logo-grid .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Slider Arrows */
+.slider-arrows {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+  padding: 0 20px;
+}
+
+.slider-arrows .arrow {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  pointer-events: all;
+  opacity: 0.9;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: pulse 3s infinite;
+}
+
+.slider-arrows .arrow:hover {
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  animation-play-state: paused;
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+
